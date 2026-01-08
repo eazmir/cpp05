@@ -1,36 +1,47 @@
+MAKEFLAGS += --no-print-directory
+
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=-98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = Intern
+
 DIR_MIN = main
-DIR_OBJ = obj 
 DIR_SRC = src
-PRE_DIR = /ex02
+DIR_OBJ = obj
+PRE_DIR = $(DIR_SRC)/ex02
 
 LIBPREVOIS_EX = $(PRE_DIR)/libprevious_ex.a
 
-SRCS= \
+SRCS = \
 	$(DIR_MIN)/main.cpp \
-	$(DIR_SRC)/Intern.cpp\
+	$(DIR_SRC)/Intern.cpp
 
-OBJS=$(SRCS:=.cpp)
+OBJS = $(SRCS:%.cpp=$(DIR_OBJ)/%.o)
 
-all : $(NAME)
-
+all: $(NAME)
 $(NAME): $(OBJS) $(LIBPREVOIS_EX)
-	$(CXX) $(CXXFLAGS) $(LIBPREVOIS_EX) -o $(NAME)
+	@$(CXX) $(CXXFLAGS) $(OBJS) $(LIBPREVOIS_EX) -o $(NAME)
+	@echo "  Compiler: $(CXX)"
+	@echo "  Standard: C++98"
+	@echo "  Flags: $(CXXFLAGS)"
+	
+$(DIR_OBJ)/%.o: %.cpp
+	@mkdir -p $(dir $@)
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(LIBPREVOIS_EX) $(PRE_DIR)
+$(LIBPREVOIS_EX):
 	@make -C $(PRE_DIR)
 
 clean:
-	@rm -f $(OBJS)
+	@rm -rf $(DIR_OBJ)
 	@make -C $(PRE_DIR) clean
 
-fclean:clean
+fclean: clean
 	@rm -f $(NAME)
 	@make -C $(PRE_DIR) fclean
+	@rm -f *_shrubbery 
 
-re:fclean all
+re: fclean all
 
-.PHONY: fclean all clean 
+.PHONY: all clean fclean re
+

@@ -1,8 +1,4 @@
 #include "../include/Form.hpp"
-#include "../include/Bureaucrat.hpp"
-#include "../include/PresidentialPardonForm.hpp"
-#include "../include/RobotomyRequestForm.hpp"
-#include "../include/ShrubberyCreationForm.hpp"
 
 int main(void)
 {

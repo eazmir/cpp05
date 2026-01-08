@@ -22,7 +22,7 @@ all: $(NAME)
 
 $(DIR_OBJ)/%.o: $(DIR_SRC)/%.cpp
 	@mkdir -p $(DIR_OBJ)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	@rm -rf $(DIR_OBJ)

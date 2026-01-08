@@ -1,6 +1,10 @@
 #ifndef AFORM_HPP
 #define AFORM_HPP
 
+#include "../include/Bureaucrat.hpp"
+#include "../include/PresidentialPardonForm.hpp"
+#include "../include/RobotomyRequestForm.hpp"
+#include "../include/ShrubberyCreationForm.hpp"
 #include "Bureaucrat.hpp"
 #include <fstream>
 #include <cstdlib>
@@ -14,25 +18,25 @@ class AForm
         bool          is_signed;
     public:
         virtual void execute(Bureaucrat const &executor) const = 0;
+        virtual ~AForm();
         class GradeTooHighException:public std::exception
         {
             public:
-                const char* what() const throw();
+               virtual const char* what() const throw();
         };
         class GradeTooLowException: public std::exception
         {
             public:
-                const char* what() const throw();
+                virtual  const char* what() const throw();
         };
         class FormNotSignedException: public std::exception
         {
             public:
-                const char* what() const throw();
+                virtual const char* what() const throw();
         };
         AForm();
         AForm(const AForm &other);
         AForm &operator=(const AForm &other);
-        ~AForm();
         AForm(const std::string &name,const int grade_signed,const int grade_excute);
         void beSigned(Bureaucrat &bur);
         int get_grade_signed()const ;
