@@ -1,6 +1,6 @@
 #include "../include/Intern.hpp"
 
-Intern::Intern()
+Intern::Intern():temp(NULL)
 {}
 
 Intern::Intern(const Intern &other)
@@ -20,20 +20,22 @@ Intern &Intern::operator=(const Intern &other)
 }
 
 Intern::~Intern()
-{}
-
-AForm *Intern::vu(std::string target,int index)
-{   
-    if (index == 0)
-       return new ShrubberyCreationForm(target);
-    else if (index == 1)
-        return new RobotomyRequestForm(target);
-    else if (index == 2)
-        return new PresidentialPardonForm(target);
-    return (NULL);
+{
+    delete this->temp;
 }
 
-static void erryes(std::string msg)
+AForm *Intern::summonForm(std::string target,int index)
+{   
+    if (index == 0)
+       return (this->temp = new ShrubberyCreationForm(target));
+    else if (index == 1)
+        return (this->temp = new RobotomyRequestForm(target));
+    else if (index == 2)
+        return (this->temp = new PresidentialPardonForm(target));
+    return (this->temp);
+}
+
+static void error(std::string msg)
 {
     std::cout<<RED<<msg<<RESET<<std::endl;
     exit(0);
@@ -49,8 +51,8 @@ AForm  *Intern::makeForm(std::string name,std::string target)
     for (int index = 0; index < 3;index++)
     {
         if (name == nameForms[index])
-            return (this->vu(target,index));
+            return (this->summonForm(target,index));
     }
-    erryes("Invalid Name");
+    error("Invalid Name");
     return (NULL);
 }

@@ -11,6 +11,7 @@ int main(void)
             rrf = intern->makeForm("Robotomy Request", "Robert");
             john.signForm(*rrf);
             john.executeForm(*rrf);
+            delete intern;
         }
         catch (const std::exception& e)
         {
@@ -26,6 +27,7 @@ int main(void)
             rrf = intern->makeForm("Shrubbery", "Emma");
             maria.signForm(*rrf);
             maria.executeForm(*rrf);
+            delete intern;
         }
         catch (const std::exception& e)
         {
@@ -41,6 +43,7 @@ int main(void)
             rrf = intern->makeForm("Presidential Pardon", "Lucas");
             david.signForm(*rrf);
             david.executeForm(*rrf);
+            delete intern;
         }
         catch (const std::exception& e)
         {
