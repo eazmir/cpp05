@@ -6,12 +6,11 @@ int main(void)
         try
         {
             AForm *rrf;
-            Intern *intern = new Intern();
+            Intern intern;
             Bureaucrat john("John", 72);
-            rrf = intern->makeForm("Robotomy Request", "Robert");
+            rrf = intern.makeForm("Robotomy Reques", "Robert");
             john.signForm(*rrf);
             john.executeForm(*rrf);
-            delete intern;
         }
         catch (const std::exception& e)
         {
@@ -22,12 +21,11 @@ int main(void)
         try
         {
             AForm *rrf;
-            Intern *intern = new Intern();
+            Intern intern;
             Bureaucrat maria("mark", 45);
-            rrf = intern->makeForm("Shrubbery", "Emma");
+            rrf = intern.makeForm("Shrubbery", "Emma");
             maria.signForm(*rrf);
             maria.executeForm(*rrf);
-            delete intern;
         }
         catch (const std::exception& e)
         {
@@ -38,12 +36,11 @@ int main(void)
         try
         {
             AForm *rrf;
-            Intern *intern = new Intern();
+            Intern intern;
             Bureaucrat david("David", 5);
-            rrf = intern->makeForm("Presidential Pardon", "Lucas");
+            rrf = intern.makeForm("Presidential Pardon", "Lucas");
             david.signForm(*rrf);
             david.executeForm(*rrf);
-            delete intern;
         }
         catch (const std::exception& e)
         {

@@ -1,5 +1,10 @@
 #include "../include/Intern.hpp"
 
+const char *Intern::InvalidName::what() const throw()
+{
+    return (RED"==Form name not recognized");
+}
+
 Intern::Intern():temp(NULL)
 {}
 
@@ -24,7 +29,7 @@ Intern::~Intern()
     delete this->temp;
 }
 
-AForm *Intern::summonForm(std::string target,int index)
+AForm *Intern::createForm(std::string target,int index)
 {   
     if (index == 0)
        return (this->temp = new ShrubberyCreationForm(target));
@@ -33,12 +38,6 @@ AForm *Intern::summonForm(std::string target,int index)
     else if (index == 2)
         return (this->temp = new PresidentialPardonForm(target));
     return (this->temp);
-}
-
-static void error(std::string msg)
-{
-    std::cout<<RED<<msg<<RESET<<std::endl;
-    exit(0);
 }
 
 AForm  *Intern::makeForm(std::string name,std::string target)
@@ -51,8 +50,9 @@ AForm  *Intern::makeForm(std::string name,std::string target)
     for (int index = 0; index < 3;index++)
     {
         if (name == nameForms[index])
-            return (this->summonForm(target,index));
+            return (this->createForm(target,index));
     }
-    error("Invalid Name");
+    if (true)
+        throw InvalidName();
     return (NULL);
 }

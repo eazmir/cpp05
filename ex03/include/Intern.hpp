@@ -9,10 +9,14 @@ class Intern
     private:
         AForm *temp;
     public:
+        class InvalidName: public std::exception
+        {
+            virtual const char *what() const throw();
+        };
         Intern();
         Intern(const Intern &other);
         Intern &operator=(const Intern &other);
         ~Intern();
         AForm *makeForm(std::string name,std::string target);
-        AForm *summonForm(std::string target,int index);
+        AForm *createForm(std::string target,int index);
 };
