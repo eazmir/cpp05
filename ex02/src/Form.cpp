@@ -13,7 +13,7 @@ const char* AForm::FormNotSignedException::what() const throw()
 {
     return ("Not Signed");
 }
-AForm::AForm():name("default"),grade_signed(0),grade_excute(0),is_signed(false)
+AForm::AForm():name(""),grade_signed(0),grade_excute(0),is_signed(false)
 {}
 
 AForm::AForm(const AForm &other):
@@ -45,7 +45,7 @@ AForm::AForm(const std::string &name,const int grade_signed,const int grade_excu
     if (this->grade_signed < 1)
         throw   AForm::GradeTooHighException();
     if (this->grade_signed > 150)
-        throw AForm::GradeTooHighException();
+        throw AForm::GradeTooLowException();
     if (this->grade_excute < 1)
         throw AForm::GradeTooHighException();
     if (this->grade_excute > 150)
@@ -56,7 +56,7 @@ void AForm::beSigned(Bureaucrat &bur)
     if (bur.getGrade() <= this->grade_signed)
         this->is_signed = true;
     else
-        throw AForm::GradeTooHighException();
+        throw AForm::GradeTooLowException();
 }
 const std::string &AForm::get_name() const
 {

@@ -11,7 +11,7 @@ const char* Bureaucrat::GradeTooLowException::what()const throw()
     return "Too Low";
 }
 
-Bureaucrat::Bureaucrat():name("default"),grade(0)
+Bureaucrat::Bureaucrat():name(""),grade(0)
 {
     std::cout << "Bureaucrat created and starting work" << std::endl;
 }
@@ -39,7 +39,7 @@ Bureaucrat::Bureaucrat(const std::string name,int grade):name(name),grade(grade)
         throw Bureaucrat::GradeTooHighException();
     if (this->grade > 150)
         throw Bureaucrat::GradeTooLowException();
-     std::cout <<GREEN<< "===Bureaucrat "<<this->name<<" created and starting work===" <<RESET<< std::endl;
+    std::cout <<GREEN<< "===Bureaucrat "<<this->name<<" created and starting work===" <<RESET<< std::endl;
 }
 
 const std::string &Bureaucrat::getName() const 
@@ -48,17 +48,16 @@ const std::string &Bureaucrat::getName() const
 }
 
 void Bureaucrat::increment(void)
-{
-    if (this->grade > 150)
-        throw Bureaucrat::GradeTooHighException();
-    this->grade++;
+{ 
+    if (this->grade++ > 150)
+        throw Bureaucrat::GradeTooLowException();
 }
 void Bureaucrat::decrement(void)
 {
-    if (this->grade < 1)
+    if (this->grade-- < 1)
         throw Bureaucrat::GradeTooHighException();
-    this->grade--;
 }
+
 int Bureaucrat::getGrade()const
 {
     return (this->grade);

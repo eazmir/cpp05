@@ -32,5 +32,3 @@ void PresidentialPardonForm::execute(Bureaucrat const &excuter) const
         throw AForm::GradeTooLowException();
     std::cout <<target<<" "<<"has been pardoned by Zaphod Beeblebrox."<<std::endl;
 }
-
-

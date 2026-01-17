@@ -20,6 +20,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other):
 {
     this->grade = other.grade;
 }
+
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
     if (this != &other)
@@ -49,16 +50,15 @@ const std::string &Bureaucrat::getName() const
 
 void Bureaucrat::increment(void)
 {
-    if (this->grade > 150)
-        throw Bureaucrat::GradeTooHighException();
-    this->grade++;
+    if (this->grade++ > 150)
+        throw Bureaucrat::GradeTooLowException();
 }
 void Bureaucrat::decrement(void)
 {
-    if (this->grade < 1)
+    if (this->grade-- < 1)
         throw Bureaucrat::GradeTooHighException();
-    this->grade--;
 }
+
 int Bureaucrat::getGrade()const
 {
     return (this->grade);

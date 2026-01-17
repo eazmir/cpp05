@@ -1,4 +1,7 @@
 #include "../include/Form.hpp"
+#include "../include/PresidentialPardonForm.hpp"
+#include "../include/RobotomyRequestForm.hpp"
+#include "../include/ShrubberyCreationForm.hpp"
 
 int main(void)
 {
@@ -13,7 +16,7 @@ int main(void)
         }
         catch(const std::exception& e)
         {
-            std::cerr << e.what() << '\n';
+            std::cerr <<"Exception: "<< e.what() << '\n';
         }
     }
     {
@@ -22,7 +25,7 @@ int main(void)
             Bureaucrat manager("Manager", 45);
             Bureaucrat developer("Developer", 70);
             RobotomyRequestForm robotomy("Server");
-            for (int i = 0; i < 6;i++)
+            for (int i = 0; i < 3;i++)
             {
                 developer.signForm(robotomy);
                 manager.executeForm(robotomy);
@@ -30,7 +33,7 @@ int main(void)
         }
         catch(const std::exception& e)
         {
-            std::cerr << e.what() << '\n';
+            std::cerr <<"Exception: "<<e.what() << '\n';
         }
     }
     {
@@ -44,7 +47,7 @@ int main(void)
         }
         catch(const std::exception& e)
         {
-            std::cerr << e.what() << '\n';
+            std::cerr <<"Exception: "<< e.what() << '\n';
         }
     }
     {
@@ -58,7 +61,7 @@ int main(void)
         }
         catch(const std::exception& e)
         {
-            std::cerr << e.what() << '\n';
+            std::cerr <<"Exception: "<< e.what() << '\n';
         }
     }
     return 0;

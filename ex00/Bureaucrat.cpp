@@ -23,7 +23,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
     if (this != &other)
     {
-        //Nothing to assign
+        this->grade = other.grade;
     }
     return (*this);
 }
@@ -32,7 +32,7 @@ Bureaucrat::Bureaucrat(const std::string name,const int grade):
     name(name),
     grade(grade)
 {
-    if (this->grade <= 0)
+    if (this->grade < 1)
         throw Bureaucrat::GradeTooHighException();
     if (this->grade > 150)
         throw Bureaucrat::GradeTooLowException();
@@ -61,14 +61,12 @@ Bureaucrat::~Bureaucrat()
 
 void Bureaucrat::increment()
 {
-    this->grade++;
-    if (this->grade > 150)
+    if (this->grade++ > 150)
         throw Bureaucrat::GradeTooLowException();
 }
 
 void Bureaucrat::decrement()
 {
-    this->grade--;
-    if (this->grade < 0)
+    if (this->grade-- < 1)
         throw Bureaucrat::GradeTooHighException();
 }

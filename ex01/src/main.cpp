@@ -6,8 +6,10 @@ int main(void)
     {
         try
         {
-            Bureaucrat staff("Alex", 3);
-            Form form("Tax Form", 5, 2);
+            Bureaucrat staff("Alex", 1);
+            staff.decrement();
+            staff.increment();
+            Form form("Tax Form", 10, 2);
             staff.signForm(form);
             std::cout << form << std::endl; 
         }
@@ -57,8 +59,6 @@ int main(void)
             Bureaucrat manager("Diana", 5);
             Form form("Contract", 10, 8);
             std::cout <<manager;
-            std::cout << form << std::endl;
-            manager.signForm(form);
             std::cout << form << std::endl;
             manager.signForm(form);
             std::cout << form << std::endl;

@@ -1,13 +1,7 @@
-#ifndef AFORM_HPP
-#define AFORM_HPP
+#ifndef FORM_HPP
+#define FORM_HPP
 
-#include "../include/Bureaucrat.hpp"
-#include "../include/PresidentialPardonForm.hpp"
-#include "../include/RobotomyRequestForm.hpp"
-#include "../include/ShrubberyCreationForm.hpp"
 #include "Bureaucrat.hpp"
-#include <fstream>
-#include <cstdlib>
 
 class AForm
 {

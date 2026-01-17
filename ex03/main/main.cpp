@@ -23,7 +23,7 @@ int main(void)
             AForm *rrf;
             Intern intern;
             Bureaucrat maria("mark", 45);
-            rrf = intern.makeForm("Shrubbery", "Emma");
+            rrf = intern.makeForm("Shrubbery", "alice");
             maria.signForm(*rrf);
             maria.executeForm(*rrf);
         }
