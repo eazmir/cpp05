@@ -29,28 +29,36 @@ Intern::~Intern()
     delete this->temp;
 }
 
-AForm *Intern::createForm(std::string target,int index)
-{   
-    if (index == 0)
-       return (this->temp = new ShrubberyCreationForm(target));
-    else if (index == 1)
-        return (this->temp = new RobotomyRequestForm(target));
-    else if (index == 2)
-        return (this->temp = new PresidentialPardonForm(target));
-    return (this->temp);
+AForm *Intern::Shrubbery(std::string target)
+{
+    return (this->temp = new ShrubberyCreationForm(target));
+}
+AForm *Intern::Robotomy(std::string target)
+{
+    return (this->temp = new RobotomyRequestForm(target));
+}
+AForm *Intern::Presidential(std::string target)
+{
+    return (this->temp = new PresidentialPardonForm(target));
 }
 
 AForm  *Intern::makeForm(std::string name,std::string target)
 {
-    std::string nameForms[] = {
-                                "Shrubbery",
+    std::string nameForms[] = 
+    {                           "Shrubbery",
                                 "Robotomy Request",
                                 "Presidential Pardon"
-                            };
+    };
+    AForm *(Intern::*createForm[])(std::string) =
+    {
+                                &Intern::Shrubbery,
+                                &Intern::Robotomy,
+                                &Intern::Presidential                  
+    };
     for (int index = 0; index < 3;index++)
     {
         if (name == nameForms[index])
-            return (this->createForm(target,index));
+            return (this->*createForm[index])(target);
     }
     if (true)
         throw InvalidName();

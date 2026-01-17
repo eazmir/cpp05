@@ -13,7 +13,6 @@ class RobotomyRequestForm:public AForm
         RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
         ~RobotomyRequestForm();
         RobotomyRequestForm(std::string name);
-        void execute(Bureaucrat const &executer)const;
-      
+        void execute(Bureaucrat const &executer)const;   
 };
 #endif
